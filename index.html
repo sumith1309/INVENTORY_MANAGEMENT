@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management & Optimization | AI-Powered Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-cubes"></i>
+                <span>InventoryAI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#demo" class="nav-link">Demo</a></li>
+                <li><a href="dashboard.html" class="nav-link btn-primary">Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="animated-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">AI-Powered</span> Inventory Management
+            </h1>
+            <p class="hero-subtitle">
+                Optimize your inventory with intelligent ABC classification, demand forecasting, and safety stock calculation
+            </p>
+            <div class="hero-buttons">
+                <a href="dashboard.html" class="btn btn-large btn-primary">
+                    <i class="fas fa-rocket"></i> Launch Dashboard
+                </a>
+                <a href="#demo" class="btn btn-large btn-secondary">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">AI</div>
+                    <div class="stat-label">Powered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">Real-time</div>
+                    <div class="stat-label">Analytics</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Key Features</h2>
+                <p class="section-subtitle">Advanced AI capabilities for inventory optimization</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="feature-title">ABC Classification</h3>
+                    <p class="feature-description">
+                        Automatically classify inventory items into A, B, and C categories based on annual consumption value. Top 70% → A, Next 20% → B, Remaining → C.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI-Powered Prediction</h3>
+                    <p class="feature-description">
+                        Decision Tree classifier predicts ABC categories using Annual Usage, Unit Cost, Lead Time, and Past Demand with high accuracy.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Demand Forecasting</h3>
+                    <p class="feature-description">
+                        Linear Regression model predicts future demand from historical usage patterns, enabling proactive inventory management.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Safety Stock Calculation</h3>
+                    <p class="feature-description">
+                        Dynamic safety stock calculation using formula Z.σ√Lead Time where σ is 10% of predicted demand, ensuring optimal inventory levels.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="feature-title">Service Level Trade-offs</h3>
+                    <p class="feature-description">
+                        Interactive visualization showing the relationship between service levels, safety stock, and holding costs for informed decision-making.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Analytics</h3>
+                    <p class="feature-description">
+                        Dynamic charts and visualizations update in real-time as you modify input values, providing instant insights.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Step-by-step process of inventory optimization</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>ABC Classification</h3>
+                        <p>Calculate annual value (usage × unit cost), sort items by value, and classify into A, B, or C categories based on cumulative percentage.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>AI Classification</h3>
+                        <p>Train a Decision Tree classifier using item features (Annual Usage, Unit Cost, Lead Time, Past Demand) to predict ABC categories.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Demand Forecasting</h3>
+                        <p>Use Linear Regression to predict future demand from past demand patterns, enabling accurate inventory planning.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Safety Stock Calculation</h3>
+                        <p>Calculate optimal safety stock using the formula: Z.σ√Lead Time where σ = 10% of predicted demand and Z corresponds to service level.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Trade-off Analysis</h3>
+                        <p>Visualize service level trade-offs to balance customer satisfaction, inventory risk, and financial impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Dashboard</h2>
+                <p class="section-subtitle">Experience the power of AI-driven inventory management</p>
+            </div>
+            <div class="demo-preview">
+                <div class="demo-card">
+                    <div class="demo-image">
+                        <i class="fas fa-chart-area"></i>
+                    </div>
+                    <h3>Real-time Calculations</h3>
+                    <p>All calculations update instantly as you modify input values</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-image">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Dynamic Visualizations</h3>
+                    <p>Interactive charts show ABC distribution, demand forecasts, and safety stock levels</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-image">
+                        <i class="fas fa-sliders-h"></i>
+                    </div>
+                    <h3>Service Level Trade-offs</h3>
+                    <p>Adjust service levels and see real-time impact on safety stock and holding costs</p>
+                </div>
+            </div>
+            <div class="demo-cta">
+                <a href="dashboard.html" class="btn btn-large btn-primary">
+                    <i class="fas fa-arrow-right"></i> Try Dashboard Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>InventoryAI</h3>
+                    <p>AI-Powered Inventory Management & Optimization Platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="#features">ABC Classification</a></li>
+                        <li><a href="#features">Demand Forecasting</a></li>
+                        <li><a href="#features">Safety Stock</a></li>
+                        <li><a href="#features">Trade-off Analysis</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 InventoryAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="landing.js"></script>
+</body>
+</html>
+

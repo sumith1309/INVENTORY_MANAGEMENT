@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Inventory Management & Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-body">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-cubes"></i>
+            <span>InventoryAI</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#dashboard" class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1>Inventory Management & Optimization Dashboard</h1>
+            <div class="header-actions">
+                <button class="btn-icon" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Data Input Section -->
+        <section class="dashboard-section">
+            <div class="section-header">
+                <h2><i class="fas fa-edit"></i> Data Input & Configuration</h2>
+            </div>
+            <div class="input-container">
+                <div class="input-panel">
+                    <h3>Inventory Data</h3>
+                    <div class="table-container">
+                        <table id="dataTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Annual Usage</th>
+                                    <th>Unit Cost</th>
+                                    <th>Lead Time</th>
+                                    <th>Past Demand</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dataTableBody">
+                                <!-- Rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                        <button class="btn btn-secondary" id="addRowBtn">
+                            <i class="fas fa-plus"></i> Add Row
+                        </button>
+                    </div>
+                </div>
+                <div class="config-panel">
+                    <h3>Configuration</h3>
+                    <div class="config-group">
+                        <label>Service Level (%)</label>
+                        <input type="range" id="serviceLevel" min="80" max="99" value="95" step="1">
+                        <span class="value-display" id="serviceLevelValue">95%</span>
+                    </div>
+                    <div class="config-group">
+                        <label>Holding Cost Rate (%)</label>
+                        <input type="range" id="holdingCostRate" min="10" max="50" value="20" step="1">
+                        <span class="value-display" id="holdingCostRateValue">20%</span>
+                    </div>
+                    <div class="config-group">
+                        <label>Min Service Level (%)</label>
+                        <input type="range" id="serviceLevelMin" min="80" max="95" value="80" step="1">
+                        <span class="value-display" id="serviceLevelMinValue">80%</span>
+                    </div>
+                    <div class="config-group">
+                        <label>Max Service Level (%)</label>
+                        <input type="range" id="serviceLevelMax" min="85" max="99" value="99" step="1">
+                        <span class="value-display" id="serviceLevelMaxValue">99%</span>
+                    </div>
+                    <div class="config-group">
+                        <label>Select Products for Trade-off</label>
+                        <div id="productSelect" class="product-select">
+                            <!-- Products will be added dynamically -->
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="calculateBtn">
+                        <i class="fas fa-calculator"></i> Calculate
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Metrics -->
+        <section class="dashboard-section" id="metricsSection" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-tachometer-alt"></i> Key Performance Indicators</h2>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-boxes"></i></div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="totalItems">0</div>
+                        <div class="metric-label">Total Items</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-star"></i></div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="categoryA">0</div>
+                        <div class="metric-label">Category A</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-star-half-alt"></i></div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="categoryB">0</div>
+                        <div class="metric-label">Category B</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="far fa-star"></i></div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="categoryC">0</div>
+                        <div class="metric-label">Category C</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="avgPredictedDemand">0</div>
+                        <div class="metric-label">Avg Predicted Demand</div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="metric-content">
+                        <div class="metric-value" id="totalSafetyStock">0</div>
+                        <div class="metric-label">Total Safety Stock</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="dashboard-section" id="chartsSection" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Model Predictions & Analysis</h2>
+            </div>
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>ABC Category Distribution</h3>
+                    <div id="abcChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>ABC vs Predicted ABC</h3>
+                    <div id="abcComparisonChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Demand Forecasting</h3>
+                    <div id="demandChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Past vs Predicted Demand</h3>
+                    <div id="scatterChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Safety Stock by Item</h3>
+                    <div id="safetyStockChart" class="chart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <h3>Holding Cost Analysis</h3>
+                    <div id="holdingCostChart" class="chart-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Level Trade-offs -->
+        <section class="dashboard-section" id="tradeoffSection" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-balance-scale"></i> Service Level Trade-offs Analysis</h2>
+            </div>
+            <div class="tradeoff-container">
+                <div id="tradeoffChart" class="chart-container-large"></div>
+                <div class="interpretation-box">
+                    <h3>Interpretation</h3>
+                    <ul>
+                        <li><strong>Blue Line (Safety Stock):</strong> Shows how safety stock increases non-linearly as service level increases</li>
+                        <li><strong>Red Line (Holding Cost):</strong> Shows the associated holding cost for maintaining safety stock</li>
+                        <li><strong>Trade-off:</strong> Higher service levels require more safety stock and incur higher holding costs</li>
+                        <li><strong>Product Differences:</strong> Each product responds differently based on demand variability and lead time</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Table -->
+        <section class="dashboard-section" id="resultsSection" style="display: none;">
+            <div class="section-header">
+                <h2><i class="fas fa-table"></i> Complete Results Summary</h2>
+            </div>
+            <div class="table-container">
+                <table id="resultsTable" class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>ABC Category</th>
+                            <th>Predicted ABC</th>
+                            <th>Annual Usage</th>
+                            <th>Past Demand</th>
+                            <th>Predicted Demand</th>
+                            <th>Lead Time</th>
+                            <th>Safety Stock</th>
+                            <th>Holding Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                        <!-- Results will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Calculating...</p>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
+
